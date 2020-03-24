@@ -1,30 +1,32 @@
-/*  Program untuk mengurutkan bilangan dari terkecil ke terbesar 
-    maupun terbesar ke terkecil menggunakan pointer array dan pointer fungsi.
+/*  Program sederhana untuk mengurutkan data 
+	menggunakan algoritma bublesort serta
+	pointer array dan pointer fungsi.
     Sebagai tugas responsi pengganti pertemuan ke-4.
-    Start on Sat, March 21st 2020 at 7.14 am */
+    Start on Sat, March 21st 2020 at 7.14 am.
+	------------------------------------------------*/
 
 #include <iostream>
 using namespace std;
 
 void pilihan();
+void toMax(int [], int);
 
 int main (){
-  pilihan();
-  int size, tmp;
+  	pilihan();
+  	int size;
   	char pilih; 
 
-  	cout << "Masukkan pilihan = " ;
+  	cout << "\nMasukkan pilihan = " ;
   	cin >> pilih ;
   	cout << endl << endl ;
 
-
   	cout << "========== Program Mengurutkan Bilangan ==========" << endl << endl ;
-  	cout << "Ada berapa banyak bilangan = " ;
+  	cout << "Ada berapa banyak data = " ;
   	cin >> size ;
-  	
-  	int *data = new int[size];
 
   	if (pilih == '1'){
+		int *data = new int[size];
+		
 	  	for (int i=0; i<size; i++){
 	  		cout << "Bilangan ke " << (i+1)<< " = " ;
 	  		cin >> data[i] ;
@@ -36,21 +38,13 @@ int main (){
 		}
 		cout << endl << endl ;
 		
-		for (int i=0; i<size; i++){
-			for (int j=i+1; j<=size; j++){
-				if (data[i]>data[j]){
-					
-					tmp = data[i];
-					data[i] = data[j];
-					data[j] = tmp;							//before :: data[i] = tmp;
-				}
-			}
-	  	}
+		toMax(data, size);
 
 	  	cout << "Bilangan setelah diurutkan = ";
 	  	for (int i=0; i<size; i++){
 	  		cout << data[i] << " " ;
 	  	}
+		delete []data;
 	}
 	cout << endl;
 return 0;
@@ -62,4 +56,14 @@ void pilihan(){
 		 << "          3. Nama A-Z (1 kata)" << endl
 		 << "          4. Nama Z-A (1 kata)" << endl
 		 << "          (pilih 1,2,3, atau 4 saja)";
+}
+void toMax(int data[], int n){
+	for(int i = 0; i < n; i++){
+        for(int j = i+1; j < n; j++){	
+            if(data[i] > data[j]){
+
+                swap(data[i], data[j]);
+            }
+        }
+    }
 }
