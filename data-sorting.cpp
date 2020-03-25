@@ -10,6 +10,8 @@ using namespace std;
 
 void pilihan();
 void toMax(int [], int);
+void inputNum(int [], int);
+void printNum(int [], int);
 
 int main (){
   	pilihan();
@@ -66,4 +68,16 @@ void toMax(int data[], int n){
             }
         }
     }
+}
+void printNum(int data[], int n){
+	for (int i = 0; i < n; i++){
+		cout << *(data+i) << " " ;
+	}
+	cout << endl;
+}
+void inputString(string data[], int n){
+	for (int i = 0; i < n; i++){
+	  	cout << "Data ke-" << (i+1)<< " = " ;
+	  	cin >> *(data+i);
+	}
 }
