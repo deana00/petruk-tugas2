@@ -13,6 +13,7 @@ void toMax(int [], int);
 void toMin(int [], int);
 void inputNum(int [], int);
 void printNum(int [], int);
+void inputString(string [], int);
 void (*Fptri)(int [], int);
 void (*Fptrsi)(string [], int);
 void before();
@@ -88,6 +89,12 @@ void printNum(int data[], int n){
 void inputNum(int data[], int n){
 	for (int i = 0; i < n; i++){
 	  	cout << "Bilangan ke " << (i+1)<< " = " ;
+	  	cin >> *(data+i);
+	}
+}
+void inputString(string data[], int n){
+	for (int i = 0; i < n; i++){
+	  	cout << "Data ke-" << (i+1)<< " = " ;
 	  	cin >> *(data+i);
 	}
 }
