@@ -10,9 +10,13 @@ using namespace std;
 
 void pilihan();
 void toMax(int [], int);
+void toMin(int [], int);
 void inputNum(int [], int);
 void printNum(int [], int);
+void (*Fptri)(int [], int);
+void (*Fptrsi)(string [], int);
 void before();
+void after();
 
 int main (){
   	pilihan();
@@ -36,7 +40,13 @@ int main (){
   		if(pilih == '1'){
   			Fptri = toMax;
   			Fptri(data, size);
-  		} 
+  		}
+		else{
+			Fptri = toMin;
+			Fptri(data, size);
+		}
+		after();
+		printNum(data, size);
   	}
 	cout << endl;
 return 0;
@@ -59,6 +69,16 @@ void toMax(int data[], int n){
         }
     }
 }
+void toMin(int data[], int n){
+	for(int i = 0; i < n; i++){
+        for(int j = i+1; j < n; j++){	
+            if(data[i] < data[j]){
+
+                swap(data[i], data[j]);
+            }
+        }
+    }
+}
 void printNum(int data[], int n){
 	for (int i = 0; i < n; i++){
 		cout << *(data+i) << " " ;
@@ -73,4 +93,7 @@ void inputNum(int data[], int n){
 }
 void before(){
 	cout << "\nData sebelum diurutkan :\n";
+}
+void after(){
+	cout << "\nData setelah diurutkan :\n";
 }
