@@ -17,6 +17,7 @@ void inputString(string [], int);
 void printString(string [], int);
 void (*Fptri)(int [], int);
 void (*Fptrsi)(string [], int);
+void toZ(string [], int);
 void before();
 void after();
 
@@ -53,6 +54,14 @@ int main (){
   	}
 	else if (pilih == '3' || pilih == '4'){
 		string *data = new string[size];
+		
+                inputString(data, size);
+  		before();
+  		printString(data, size);
+  		if(pilih == '3'){
+  			Fptrsi = toZ;
+  			Fptrsi(data, size);
+  		}
 		
 		delete []data;
 	}
@@ -111,6 +120,16 @@ void inputString(string data[], int n){
 void printString(string data[], int n){
 	for (int i = 0; i < n; i++){
 		cout << i+1 << "." << *(data+i) << endl;
+	}
+}
+void toZ(string data[], int n){
+	for(int i = 0; i < n; i++){
+		for(int j=i+1; j<n; j++){
+			if(data[i] > data[j]){
+				
+				swap(data[i], data[j]);
+			}
+		}
 	}
 }
 void before(){
