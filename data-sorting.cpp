@@ -9,15 +9,16 @@
 using namespace std;
 
 void pilihan();
-void toMax(int [], int);
-void toMin(int [], int);
-void inputNum(int [], int);
-void printNum(int [], int);
-void inputString(string [], int);
-void printString(string [], int);
-void (*Fptri)(int [], int);
-void (*Fptrsi)(string [], int);
-void toZ(string [], int);
+void toMax(int [], int *);
+void toMin(int [], int *);
+void toZ(string [], int *);
+void toA(string [], int *);
+void inputNum(int [], int *);
+void printNum(int [], int *);
+void inputString(string [], int *);
+void printString(string [], int *);
+void (*Fptri)(int [], int *);
+void (*Fptrsi)(string [], int *);
 void before();
 void after();
 
@@ -37,32 +38,37 @@ int main (){
   	if (pilih == '1' || pilih == '2'){
 		int *data = new int[size];
 		
-	  	inputNum(data, size);
+	  	inputNum(data, &size);
   		before();
-  		printNum(data, size);
+  		printNum(data, &size);
   		if(pilih == '1'){
   			Fptri = toMax;
-  			Fptri(data, size);
+  			Fptri(data, &size);
   		}
 		else{
 			Fptri = toMin;
-			Fptri(data, size);
+			Fptri(data, &size);
 		}
 		after();
-		printNum(data, size);
+		printNum(data, &size);
 		delete []data;
   	}
 	else if (pilih == '3' || pilih == '4'){
 		string *data = new string[size];
 		
-                inputString(data, size);
+                inputString(data, &size);
   		before();
-  		printString(data, size);
+  		printString(data, &size);
   		if(pilih == '3'){
   			Fptrsi = toZ;
-  			Fptrsi(data, size);
+  			Fptrsi(data, &size);
   		}
-		
+		else if(pilih == '4'){
+			Fptrsi = toA;
+			Fptrsi(data, &size);
+		}
+		after();
+		printString(data, &size);
 		delete []data;
 	}
 	else{
@@ -79,57 +85,67 @@ void pilihan(){
 		 << "          4. Nama Z-A (1 kata)" << endl
 		 << "          (pilih 1,2,3, atau 4 saja)";
 }
-void toMax(int data[], int n){
-	for(int i = 0; i < n; i++){
-        for(int j = i+1; j < n; j++){	
-            if(data[i] > data[j]){
+void toMax(int data[], int *n){
+	for(int i = 0; i < *n; i++){
+        	for(int j = i+1; j < *n; j++){	
+            		if(data[i] > data[j]){
 
-                swap(data[i], data[j]);
+                		swap(data[i], data[j]);
             }
         }
     }
 }
-void toMin(int data[], int n){
-	for(int i = 0; i < n; i++){
-        for(int j = i+1; j < n; j++){	
-            if(data[i] < data[j]){
-
-                swap(data[i], data[j]);
-            }
-        }
-    }
-}
-void printNum(int data[], int n){
-	for (int i = 0; i < n; i++){
-		cout << *(data+i) << " " ;
-	}
-	cout << endl;
-}
-void inputNum(int data[], int n){
-	for (int i = 0; i < n; i++){
-	  	cout << "Bilangan ke " << (i+1)<< " = " ;
-	  	cin >> *(data+i);
-	}
-}
-void inputString(string data[], int n){
-	for (int i = 0; i < n; i++){
-	  	cout << "Data ke-" << (i+1)<< " = " ;
-	  	cin >> *(data+i);
-	}
-}
-void printString(string data[], int n){
-	for (int i = 0; i < n; i++){
-		cout << i+1 << "." << *(data+i) << endl;
-	}
-}
-void toZ(string data[], int n){
-	for(int i = 0; i < n; i++){
-		for(int j=i+1; j<n; j++){
+void toZ(string data[], int *n){
+	for(int i = 0; i < *n; i++){
+		for(int j = i+1; j < *n; j++){
 			if(data[i] > data[j]){
 				
 				swap(data[i], data[j]);
 			}
 		}
+	}
+}
+void toA(string data[], int *n){
+	for(int i = 0; i < *n; i++){
+		for(int j = i+1; j < *n; j++){
+			if(data[i] < data[j]){
+
+				swap(data[i], data[j]);
+			}
+		}
+	}
+}
+void toMin(int data[], int *n){
+	for(int i = 0; i < *n; i++){
+        	for(int j = i+1; j < *n; j++){	
+            		if(data[i] < data[j]){
+
+                		swap(data[i], data[j]);
+            }
+        }
+    }
+}
+void inputNum(int data[], int *n){
+	for (int i = 0; i < *n; i++){
+	  	cout << "Bilangan ke " << (i+1)<< " = " ;
+	  	cin >> *(data+i);
+	}
+}
+void printNum(int data[], int *n){
+	for (int i = 0; i < *n; i++){
+		cout << *(data+i) << " " ;
+	}
+	cout << endl;
+}
+void inputString(string data[], int *n){
+	for (int i = 0; i < *n; i++){
+	  	cout << "Data ke-" << (i+1)<< " = " ;
+	  	cin >> *(data+i);
+	}
+}
+void printString(string data[], int *n){
+	for (int i = 0; i < *n; i++){
+		cout << i+1 << "." << *(data+i) << endl;
 	}
 }
 void before(){
