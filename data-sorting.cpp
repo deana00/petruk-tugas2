@@ -12,6 +12,7 @@ void pilihan();
 void toMax(int [], int);
 void inputNum(int [], int);
 void printNum(int [], int);
+void before();
 
 int main (){
   	pilihan();
@@ -22,32 +23,21 @@ int main (){
   	cin >> pilih ;
   	cout << endl << endl ;
 
-  	cout << "========== Program Mengurutkan Bilangan ==========" << endl << endl ;
+  	cout << "========== Program Mengurutkan Data ==========" << endl << endl ;
   	cout << "Ada berapa banyak data = " ;
   	cin >> size ;
 
-  	if (pilih == '1'){
+  	if (pilih == '1' || pilih == '2'){
 		int *data = new int[size];
 		
-	  	for (int i=0; i<size; i++){
-	  		cout << "Bilangan ke " << (i+1)<< " = " ;
-	  		cin >> data[i] ;
-		}
-		  
-		cout << "Bilangan sebelum diurutkan = " ;
-		for (int i=0; i<size; i++){
-			cout << data[i] << " " ;
-		}
-		cout << endl << endl ;
-		
-		toMax(data, size);
-
-	  	cout << "Bilangan setelah diurutkan = ";
-	  	for (int i=0; i<size; i++){
-	  		cout << data[i] << " " ;
-	  	}
-		delete []data;
-	}
+	  	inputNum(data, size);
+  		before();
+  		printNum(data, size);
+  		if(pilih == '1'){
+  			Fptri = toMax;
+  			Fptri(data, size);
+  		} 
+  	}
 	cout << endl;
 return 0;
 }
@@ -75,9 +65,12 @@ void printNum(int data[], int n){
 	}
 	cout << endl;
 }
-void inputString(string data[], int n){
+void inputNum(int data[], int n){
 	for (int i = 0; i < n; i++){
-	  	cout << "Data ke-" << (i+1)<< " = " ;
+	  	cout << "Bilangan ke " << (i+1)<< " = " ;
 	  	cin >> *(data+i);
 	}
+}
+void before(){
+	cout << "\nData sebelum diurutkan :\n";
 }
