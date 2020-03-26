@@ -14,6 +14,7 @@ void toMin(int [], int);
 void inputNum(int [], int);
 void printNum(int [], int);
 void inputString(string [], int);
+void printString(string [], int);
 void (*Fptri)(int [], int);
 void (*Fptrsi)(string [], int);
 void before();
@@ -48,6 +49,15 @@ int main (){
 		}
 		after();
 		printNum(data, size);
+		delete []data;
+  	}
+	else if (pilih == '3' || pilih == '4'){
+		string *data = new string[size];
+		
+		delete []data;
+	}
+	else{
+  		cout << "Maaf, pilihan Anda tidak tersedia. Silahkan ulangi.\n";
   	}
 	cout << endl;
 return 0;
@@ -96,6 +106,11 @@ void inputString(string data[], int n){
 	for (int i = 0; i < n; i++){
 	  	cout << "Data ke-" << (i+1)<< " = " ;
 	  	cin >> *(data+i);
+	}
+}
+void printString(string data[], int n){
+	for (int i = 0; i < n; i++){
+		cout << i+1 << "." << *(data+i) << endl;
 	}
 }
 void before(){
